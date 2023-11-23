@@ -1,5 +1,5 @@
 @if(Session::has('email'))
-  
+  $user = Session::get('email')
 @else
 <script>window.location.href = 'admin/login'</script>
 @endif
@@ -17,13 +17,14 @@
   window.onload = massge;
  </script>
 @endif
+{{$user = Session::get('email')}}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Product</title>
     @include ("adm-css-link")
   </head>
   <body>
@@ -38,7 +39,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="page-header">
+            <div class="page-header title-product">
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white me-2">
                   <i class="mdi mdi-package-variant-closed"></i>
@@ -47,7 +48,7 @@
             </div>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal ">
-              Add Product
+              Add Product 
             </button>
 
             <!-- Modal Add Product -->
@@ -56,7 +57,7 @@
                 <div class="modal-content">
                   <form action="/admin" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Add Product</h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
