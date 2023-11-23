@@ -1,0 +1,10 @@
+.main-panel {
+    width: 100%;
+}
+.page-header {
+    text-align: center;
+    display: block !important;
+}
+.mdi-square-edit-outline,.mdi-cancel {
+    font-size: 25px;
+}
