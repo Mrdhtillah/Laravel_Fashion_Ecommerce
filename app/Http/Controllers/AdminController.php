@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class AdminController extends Controller
 {
     public function index(){
-        $products = DB::select('select * from product');
+        $products = Product::all();
         return view('admin',['products'=> $products]);
     }
 
@@ -51,16 +54,27 @@ class AdminController extends Controller
             }
             date_default_timezone_set("Asia/Bangkok");
             $create_time = date("Y-m-d H:i:s");
-            $data = array(
+            // $data = array(
+            //     'product_name'=>$product_name,
+            //     'description'=>$description,
+            //     'price'=>$price,
+            //     'quantity'=>$quantity,
+            //     'image'=>$images,
+            //     'created_at'=>$create_time,
+            //     'updated_at'=>$create_time);
+            // DB::table('product')->insert($data);
+            Product::create([
                 'product_name'=>$product_name,
                 'description'=>$description,
                 'price'=>$price,
                 'quantity'=>$quantity,
                 'image'=>$images,
                 'created_at'=>$create_time,
-                'updated_at'=>$create_time);
-            DB::table('product')->insert($data);
-              return redirect('/admin');
+                'updated_at'=>$create_time
+            ]);
+            return redirect('/admin');
+            dd('Success');
+              
         }
         // Edit data
         else if($request->input('action')=='update'){
@@ -95,35 +109,53 @@ class AdminController extends Controller
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('images'), $imageName);
                 $images = 'images/'.$imageName;
-                $data = array(
-                    'id'=>$id,
+                // $data = array(
+                //     'id'=>$id,
+                //     'product_name'=>$product_name,
+                //     'description'=>$description,
+                //     'price'=>$price,
+                //     'quantity'=>$quantity,
+                //     'image'=>$images,
+                //     'created_at'=>$create_time,
+                //     'updated_at'=>$create_time);
+                // DB::table('product')
+                // ->where('id', $id)
+                // ->update([  'product_name'=>$product_name,
+                //             'description'=>$description,
+                //             'price'=>$price,
+                //             'quantity'=>$quantity,
+                //             'image'=>$images,
+                //             'updated_at'=>$create_time]
+                //     );
+                Product::find($id)->update([
                     'product_name'=>$product_name,
                     'description'=>$description,
                     'price'=>$price,
                     'quantity'=>$quantity,
                     'image'=>$images,
-                    'created_at'=>$create_time,
-                    'updated_at'=>$create_time);
-                DB::table('product')
-                ->where('id', $id)
-                ->update([  'product_name'=>$product_name,
-                            'description'=>$description,
-                            'price'=>$price,
-                            'quantity'=>$quantity,
-                            'image'=>$images,
-                            'updated_at'=>$create_time]
-                    );
+                    'updated_at'=>$create_time
+                ]);
+           
+
             }
             else{
+                Product::find($id)->update([
+                    'product_name'=>$product_name,
+                    'description'=>$description,
+                    'price'=>$price,
+                    'quantity'=>$quantity,
+                    'updated_at'=>$create_time
+                ]);
                 
-                DB::table('product')
-                ->where('id', $id)
-                ->update(['product_name'=>$product_name,
-                        'description'=>$description,
-                        'price'=>$price,
-                        'quantity'=>$quantity,
-                        'updated_at'=>$create_time]
-                    );
+                // DB::table('product')
+                // ->where('id', $id)
+                // ->update(['product_name'=>$product_name,
+                //         'description'=>$description,
+                //         'price'=>$price,
+                //         'quantity'=>$quantity,
+                //         'updated_at'=>$create_time]
+                //     );
+
                     
             }  
             echo "<script>alert('Data Have Been Updated')</script>";
@@ -134,12 +166,16 @@ class AdminController extends Controller
         else if($request->input('action')=='delete'){
 
             $id = $request -> input('edit_id');
-            DB::table('product')
-                ->where('id', $id)
-                ->delete();
-
+            // DB::table('product')
+            //     ->where('id', $id)
+            //     ->delete();
+            Product::find($id)->delete();
+            
             echo "<script>alert('Data Have Been Updated')</script>";
             return redirect('/admin');    
+        }
+        if($request->input('logout')==0){
+            session()->put('logout', '0');            
         }
         
     }
