@@ -17,6 +17,11 @@
   window.onload = massge;
  </script>
 @endif
+@if(Session::has('logout'))
+  Session::flush();
+  <script>window.location.href = 'admin/login'</script>
+@endif
+
 {{$user = Session::get('email')}}
 <!DOCTYPE html>
 <html lang="en">
