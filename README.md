@@ -34,13 +34,14 @@
 - [x] Check Out
 
 ## Code Link
-Admin-Customer-CRUD
+Admin-Customer-CRUD (in master branch)
+https://github.com/Mrdhtillah/Laravel_Fashion_Ecommerce 
 
 Category-Cart-Wishlist-Check Out
 https://github.com/Mrdhtillah/Laravel_Fashion_Ecommerce/tree/project
 
 ## Video Link
-Admin-Customer-CRUD
+Admin-Customer-CRUD (in project branch)
 https://youtu.be/kGVOIbb2p1o
 
 Category-Cart-Wishlist-Check Out
