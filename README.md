@@ -37,11 +37,11 @@
 Admin-Customer-CRUD (in master branch)
 https://github.com/Mrdhtillah/Laravel_Fashion_Ecommerce 
 
-Category-Cart-Wishlist-Check Out
+Category-Cart-Wishlist-Check Out (in project branch)
 https://github.com/Mrdhtillah/Laravel_Fashion_Ecommerce/tree/project
 
 ## Video Link
-Admin-Customer-CRUD (in project branch)
+Admin-Customer-CRUD
 https://youtu.be/kGVOIbb2p1o
 
 Category-Cart-Wishlist-Check Out
