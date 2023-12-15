@@ -33,10 +33,16 @@
 - [x] Categories
 - [x] Check Out
 
+## Code Link
+Admin-Customer-CRUD
+
+Category-Cart-Wishlist-Check Out
+https://github.com/Mrdhtillah/Laravel_Fashion_Ecommerce/tree/project
+
 ## Video Link
 Admin-Customer-CRUD
 https://youtu.be/kGVOIbb2p1o
 
-Cart-Wishlist-Check Out
+Category-Cart-Wishlist-Check Out
 https://youtu.be/LomlPBhnZrY
 
